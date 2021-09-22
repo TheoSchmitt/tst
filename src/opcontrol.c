@@ -29,6 +29,7 @@
   *
   * This task should never exit; it should end with some kind of infinite loop, even if empty.
   */
+  // hi 
 
   void operatorControl() {
        int power, turn;
