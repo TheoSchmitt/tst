@@ -24,11 +24,11 @@
             "-fdiagnostics-color",
             "-std=gnu99",
             "-o",
-            "bin/auto.c.o",
-            "src\\auto.c"
+            "bin/claw.c.o",
+            "src\\claw.c"
         ],
         "directory": "C:\\Users\\P6 Robotics\\Desktop\\tst",
-        "file": "src\\auto.c"
+        "file": "src\\claw.c"
     },
     {
         "arguments": [
@@ -86,11 +86,11 @@
             "-fdiagnostics-color",
             "-std=gnu99",
             "-o",
-            "bin/init.c.o",
-            "src\\init.c"
+            "bin/auto.c.o",
+            "src\\auto.c"
         ],
         "directory": "C:\\Users\\P6 Robotics\\Desktop\\tst",
-        "file": "src\\init.c"
+        "file": "src\\auto.c"
     },
     {
         "arguments": [
@@ -117,10 +117,10 @@
             "-fdiagnostics-color",
             "-std=gnu99",
             "-o",
-            "bin/claw.c.o",
-            "src\\claw.c"
+            "bin/init.c.o",
+            "src\\init.c"
         ],
         "directory": "C:\\Users\\P6 Robotics\\Desktop\\tst",
-        "file": "src\\claw.c"
+        "file": "src\\init.c"
     }
 ]

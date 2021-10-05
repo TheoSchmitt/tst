@@ -20,21 +20,27 @@
 			 int shoulderPower;
 			 int pot = 0;
        int counts;
+       int target = 45;
+       int Kp = 1;
+       int error ;
+       int power2;
        // Multiple encoders can be declared
        Encoder encoder;
       encoder = encoderInit(8, 9, false);
 
       homeShoulder();
-int shoulderEncoderAngle = -102;
 encoderReset(encoder);
-while(encoderGet(encoder) < 102) {
+while(encoderGet(encoder) < 104) {
   motorSet(5,-50);
 }
 motorSet(5,0);
 encoderReset(encoder);
-
-    while(1) {
-
+while(1){
+    while(joystickGetDigital(1,7, JOY_UP)) {
+ error = (target - encoderGet(encoder));
+ power2 = Kp * error;
+motorSet(5, -power2);
+}
         power = joystickGetAnalog(1, 2); // vertical axis on left joystick
         turn  = joystickGetAnalog(1, 1); // horizontal axis on left joystick
         chassisSet(power + turn, power - turn);
