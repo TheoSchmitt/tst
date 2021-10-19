@@ -21,12 +21,18 @@
 			 int pot = 0;
        int counts;
        int target = 45;
+       int target2 = 45;
        int Kp = 1;
+       int KpL = 1;
        int error ;
+       int error2;
        int power2;
+       int power3;
        // Multiple encoders can be declared
        Encoder encoder;
+       Encoder encoder2;
       encoder = encoderInit(8, 9, false);
+      encoder2 = encoderInit(6, 7, false);
 
       homeShoulder();
 encoderReset(encoder);
@@ -35,12 +41,31 @@ while(encoderGet(encoder) < 104) {
 }
 motorSet(5,0);
 encoderReset(encoder);
+
+
+while(digitalRead(3) == HIGH) {
+  motorSet(6,-50);
+}
+motorSet(6,0);
+encoderReset(encoder2);
+while(encoderGet(encoder2) > -190) {
+  motorSet(6,50);
+}
+motorSet(6,0);
+encoderReset(encoder2);
+
 while(1){
     while(joystickGetDigital(1,7, JOY_UP)) {
  error = (target - encoderGet(encoder));
  power2 = Kp * error;
 motorSet(5, -power2);
 }
+while(joystickGetDigital(1,7, JOY_RIGHT)) {
+error2 = (target2 - encoderGet(encoder2));
+power3 = KpL * error;
+motorSet(6, -power3);
+}
+
         power = joystickGetAnalog(1, 2); // vertical axis on left joystick
         turn  = joystickGetAnalog(1, 1); // horizontal axis on left joystick
         chassisSet(power + turn, power - turn);
