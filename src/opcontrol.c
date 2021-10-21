@@ -28,6 +28,7 @@
        int error2;
        int power2;
        int power3;
+       int lock;
        // Multiple encoders can be declared
        Encoder encoder;
        Encoder encoder2;
@@ -55,14 +56,17 @@ motorSet(6,0);
 encoderReset(encoder2);
 
 while(1){
+
+
+
     while(joystickGetDigital(1,7, JOY_UP)) {
  error = (target - encoderGet(encoder));
  power2 = Kp * error;
 motorSet(5, -power2);
 }
-while(joystickGetDigital(1,7, JOY_RIGHT)) {
+while(joystickGetDigital(1,7, JOY_UP)) {
 error2 = (target2 - encoderGet(encoder2));
-power3 = KpL * error;
+power3 = KpL * error2;
 motorSet(6, -power3);
 }
 
@@ -84,23 +88,25 @@ encoderReset(encoder);
 printf("homing complete \n");
 }
 
- if(joystickGetDigital(1, 6, JOY_UP)) {
-       shoulderSet(127); // pressing up, so lift should go up
+ if(joystickGetDigital(1, 5, JOY_UP)) {
+       shoulderSet2(127);
+       lock = encoderGet(encoder); // pressing up, so lift should go up
      }
-     else if(joystickGetDigital(1, 6, JOY_DOWN)) {
-       shoulderSet(-127); // pressing down, so lift should go down
+     else if(joystickGetDigital(1, 5, JOY_DOWN)) {
+       shoulderSet2(-127);
+       lock = encoderGet(encoder); // pressing down, so lift should go down
      }
      else {
-       shoulderSet(0); // no buttons are pressed, stop the lift
+       shoulderSet2(-3*(lock-encoderGet(encoder))); // no buttons are pressed, stop the lift
      }
-if(joystickGetDigital(1, 5, JOY_UP)) {
-		   shoulderSet2(127); // pressing up, so lift should go up
+if(joystickGetDigital(1, 6, JOY_UP)) {
+		   shoulderSet(127); // pressing up, so lift should go up
 		 }
-		 else if(joystickGetDigital(1, 5, JOY_DOWN)) {
-		   shoulderSet2(-127); // pressing down, so lift should go down
+		 else if(joystickGetDigital(1, 6, JOY_DOWN)) {
+		   shoulderSet(-127); // pressing down, so lift should go down
 		 }
 		 else {
-			 shoulderSet2(0); // no buttons are pressed, stop the lift
+			 shoulderSet(0); // no buttons are pressed, stop the lift
 		 }
      pot = analogRead(4);
  printf("the pot value %d \n", counts);
