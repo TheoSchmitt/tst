@@ -13,6 +13,8 @@
  #include "chassis.h"
  #include "shoulder.h"
  #include "homeShoulder.h"
+ #include "math.h"
+ #include "position.h"
 
 
   void operatorControl() {
@@ -29,6 +31,14 @@
        int power2;
        int power3;
        int lock;
+       int x1;
+       int y1;
+       int a1;
+       int a2;
+       int l1 = 11;
+       int l2 = 14;
+       int d;
+      
        // Multiple encoders can be declared
        Encoder encoder;
        Encoder encoder2;
