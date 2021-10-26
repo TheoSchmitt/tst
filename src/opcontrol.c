@@ -31,14 +31,14 @@
        int power2;
        int power3;
        int lock;
-       int x1;
-       int y1;
-       int a1;
-       int a2;
+       int x1 = 21;
+       int y1 = 0;
+       double a1;
+       double a2;
        int l1 = 11;
        int l2 = 14;
        int d;
-      
+
        // Multiple encoders can be declared
        Encoder encoder;
        Encoder encoder2;
@@ -66,6 +66,15 @@ motorSet(6,0);
 encoderReset(encoder2);
 
 while(1){
+
+  if(joystickGetDigital(1,8,JOY_RIGHT)) {
+      a2 = position(x1,y1,l1,l2);
+      a1 = position2(a2,x1,y1,l1,l2);
+      a2 += a1;
+      a1 *= (180/M_PI);
+      a2 *= (180/M_PI);
+
+  }
 
 
 
