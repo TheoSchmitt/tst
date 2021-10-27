@@ -31,13 +31,15 @@
        int power2;
        int power3;
        int lock;
-       int x1 = 21;
+       int x1 = 20;
        int y1 = 0;
        double a1;
        double a2;
        int l1 = 11;
        int l2 = 14;
        int d;
+       int firstKp = 1;
+       int secondKp = 1;
 
        // Multiple encoders can be declared
        Encoder encoder;
@@ -73,6 +75,18 @@ while(1){
       a2 += a1;
       a1 *= (180/M_PI);
       a2 *= (180/M_PI);
+      //move shoulder joint to a1
+      //move elbow joint to a2
+
+    int firstError =( a1 - 0.6*encoderGet(encoder));
+    int secondError =  (a2 - 0.5*encoderGet(encoder2));
+    int firstPower = firstKp*firstError;
+    int secondPower = secondKp*secondError;
+    motorSet(5,-firstPower);
+    motorSet(6,-secondPower);
+
+
+
 
   }
 
@@ -83,6 +97,8 @@ while(1){
  power2 = Kp * error;
 motorSet(5, -power2);
 }
+
+
 while(joystickGetDigital(1,7, JOY_UP)) {
 error2 = (target2 - encoderGet(encoder2));
 power3 = KpL * error2;
