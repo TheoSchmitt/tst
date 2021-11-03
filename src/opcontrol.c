@@ -40,6 +40,11 @@
        int d;
        int firstKp = 1;
        int secondKp = 1;
+       a2 = position(x1,y1,l1,l2);
+       a1 = position2(a2,x1,y1,l1,l2);
+       a2 += a1;
+       a1 *= (180/M_PI);
+       a2 *= (180/M_PI);
 
        // Multiple encoders can be declared
        Encoder encoder;
@@ -70,11 +75,7 @@ encoderReset(encoder2);
 while(1){
 
   if(joystickGetDigital(1,8,JOY_RIGHT)) {
-      a2 = position(x1,y1,l1,l2);
-      a1 = position2(a2,x1,y1,l1,l2);
-      a2 += a1;
-      a1 *= (180/M_PI);
-      a2 *= (180/M_PI);
+
       //move shoulder joint to a1
       //move elbow joint to a2
 
@@ -82,8 +83,8 @@ while(1){
     int secondError =  (a2 - 0.5*encoderGet(encoder2));
     int firstPower = firstKp*firstError;
     int secondPower = secondKp*secondError;
-    motorSet(5,-firstPower);
-    motorSet(6,-secondPower);
+    motorSet(5,firstPower);
+    motorSet(6,secondPower);
 
 
 
