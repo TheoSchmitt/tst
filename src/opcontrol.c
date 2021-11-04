@@ -42,7 +42,7 @@
        int secondKp = 1;
        a2 = position(x1,y1,l1,l2);
        a1 = position2(a2,x1,y1,l1,l2);
-       a2 += a1;
+       a2 = a1-a2;
        a1 *= (180/M_PI);
        a2 *= (180/M_PI);
 
@@ -71,6 +71,7 @@ while(encoderGet(encoder2) > -190) {
 }
 motorSet(6,0);
 encoderReset(encoder2);
+lock = 0;
 
 while(1){
 
@@ -157,7 +158,7 @@ if(joystickGetDigital(1, 6, JOY_UP)) {
      // ... Do other work
      // Reset encoder to zero
 
- delay(200);
+ delay(20);
     }
 
   }
