@@ -31,20 +31,6 @@
        int power2;
        int power3;
        int lock;
-       int x1 = 20;
-       int y1 = 0;
-       double a1;
-       double a2;
-       int l1 = 11;
-       int l2 = 14;
-       int d;
-       int firstKp = 1;
-       int secondKp = 1;
-       a2 = position(x1,y1,l1,l2);
-       a1 = position2(a2,x1,y1,l1,l2);
-       a2 = a1-a2;
-       a1 *= (180/M_PI);
-       a2 *= (180/M_PI);
 
        // Multiple encoders can be declared
        Encoder encoder;
@@ -75,21 +61,73 @@ lock = 0;
 
 while(1){
 
+  int sensor;
+  int distance;
+  int target = 2ft;
+
+   if(distance =< target)
+   motorSet(x,power)
+   motorSet(y, Power)
+
+  else if(distance => target)
+    motorSet(x,)
+    motorSet(y,)
+   else
+    motorSet(x,0)
+    motorSet(y, 0)
+
+
+
+
   if(joystickGetDigital(1,8,JOY_RIGHT)) {
+    int x1 = 25;
+    int y1 = 0;
+    int l1 = 11;
+    int l2 = 14;
+    double a2;
+    double a1;
+    bool chk1;
+    bool chk2;
+    for(int x = x1; x > (x1-5); x--) { // 5 times
+    chk1 = true;
+    chk2 = true;
+    a2 = position(x,y1,l1,l2);
+    a1 = position2(a2,x,y1,l1,l2);
+    a2 -= a1;
+    a1 *= (180/M_PI);
+    a2 *= (180/M_PI);
+    while(chk1 || chk2) {
+    error = (0.6*encoderGet(encoder) - a1);
+    error2 = (0.5*encoderGet(encoder2) - a2);
+    if((error < 42) && (error > -42)) {
+    motorSet(5,error*3);
+       if((-2 < error) && (error < 2)) {
+    chk1 = false;
+    motorSet(5,0);
+    }
+    } else if(error >= 42) {
+    motorSet(5,127);
+    } else if(error <= -42) {
+    motorSet(5,-127);
+    } else {
+    motorSet(5,0);
+    }
 
-      //move shoulder joint to a1
-      //move elbow joint to a2
-
-    int firstError =( a1 - 0.6*encoderGet(encoder));
-    int secondError =  (a2 - 0.5*encoderGet(encoder2));
-    int firstPower = firstKp*firstError;
-    int secondPower = secondKp*secondError;
-    motorSet(5,firstPower);
-    motorSet(6,secondPower);
-
-
-
-
+    if((error2 < 42) && (error2 > -42)) {
+    motorSet(6,error2*3);
+    if((-2 < error2) && (error2 < 2)) {
+    chk1 = false;
+    motorSet(6,0);
+    }
+    } else if(error2 >= 42) {
+    motorSet(6,127);
+    } else if(error2 <= -42) {
+    motorSet(6,-127);
+    } else {
+    motorSet(6,0);
+    }
+    }
+    }
   }
 
 
