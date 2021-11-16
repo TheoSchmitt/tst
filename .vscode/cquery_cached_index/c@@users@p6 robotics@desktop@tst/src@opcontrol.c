@@ -31,13 +31,23 @@
        int power2;
        int power3;
        int lock;
+       int x1 = 25;
+       int y1 = 0;
+       int l1 = 11;
+       int l2 = 14;
+       double a2;
+       double a1;
+       bool chk1;
+       bool chk2;
+       int distanceToTarget;
 
        // Multiple encoders can be declared
        Encoder encoder;
        Encoder encoder2;
+       Ultrasonic frontSonar;
       encoder = encoderInit(8, 9, false);
       encoder2 = encoderInit(6, 7, false);
-
+      frontSonar = ultrasonicInit(1, 2);
       homeShoulder();
 encoderReset(encoder);
 while(encoderGet(encoder) < 104) {
@@ -61,20 +71,25 @@ lock = 0;
 
 while(1){
 
+//ultrosonic input port 2 output port 1
+if (joystickGetDigital(1, x JOY_DIRECTION) {
+distanceToTarget = ultrasonicGet(frontSonar);
+printf("The distance to target is %d", distance to target)
+}
   int sensor;
   int distance;
   int target = 2ft;
 
    if(distance =< target)
    motorSet(x,power)
-   motorSet(y, Power)
+   motorSet(y,power)
 
   else if(distance => target)
     motorSet(x,)
     motorSet(y,)
    else
     motorSet(x,0)
-    motorSet(y, 0)
+    motorSet(y,0)
 
 
 
