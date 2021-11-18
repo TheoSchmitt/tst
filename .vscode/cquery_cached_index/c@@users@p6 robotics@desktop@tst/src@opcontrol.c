@@ -70,27 +70,25 @@ encoderReset(encoder2);
 lock = 0;
 
 while(1){
-
+//ULTROSONIC SENSOR LINE FOLLOWING PRJ 7
 //ultrosonic input port 2 output port 1
-if (joystickGetDigital(1, x JOY_DIRECTION) {
+while (joystickGetDigital(1, 7, JOY_DOWN)) {
+
 distanceToTarget = ultrasonicGet(frontSonar);
-printf("The distance to target is %d", distance to target)
+printf("The distance to target is %d \n", distanceToTarget);
+if (distanceToTarget > 20){
+chassisSet (100,100);
 }
-  int sensor;
-  int distance;
-  int target = 2ft;
-
-   if(distance =< target)
-   motorSet(x,power)
-   motorSet(y,power)
-
-  else if(distance => target)
-    motorSet(x,)
-    motorSet(y,)
-   else
-    motorSet(x,0)
-    motorSet(y,0)
-
+else if (distanceToTarget < 18) {
+chassisSet (-100,-100);
+}
+else if (distanceToTarget == -1){
+  chassisSet (40,40);
+}
+else {
+chassisSet (0,0);
+}
+}
 
 
 
@@ -211,7 +209,7 @@ if(joystickGetDigital(1, 6, JOY_UP)) {
      // ... Do other work
      // Reset encoder to zero
 
- delay(20);
+ delay(60);
     }
 
   }
