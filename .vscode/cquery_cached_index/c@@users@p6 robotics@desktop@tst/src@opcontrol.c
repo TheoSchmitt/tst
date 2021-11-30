@@ -45,10 +45,9 @@
        Encoder encoder;
        Encoder encoder2;
        Ultrasonic frontSonar;
-       int kpU = 2;
+       double kpU = 0.1;
        int powerU;
        int errorU;
-       int goalU;
        int maxOut = 127;
       encoder = encoderInit(8, 9, false);
       encoder2 = encoderInit(6, 7, false);
@@ -86,22 +85,13 @@ printf("The distance to target is %d \n", distanceToTarget);
   errorU = (20 - distanceToTarget);
   powerU = kpU * errorU;
   if(abs(error) < maxOut){
-  chassisSet (powerU, powerU);
+  chassisSet (-1*powerU, -1*powerU);
 }
-  else{
-     chassisSet(powerU/abs(powerU)*maxOut,powerU/abs(powerU)*maxOut);
+  else {
+     chassisSet(-1*powerU/abs(powerU)*maxOut,-1*powerU/abs(powerU)*maxOut);
    }
 
-
-
-
-else {
-chassisSet (0,0);
 }
-}
-
-
-
   if(joystickGetDigital(1,8,JOY_RIGHT)) {
     int x1 = 25;
     int y1 = 0;
