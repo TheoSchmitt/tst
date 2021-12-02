@@ -102,8 +102,12 @@ printf("The distance to target is %d \n", distanceToTarget);
 //chassisSet (1*50, -1*50)
 
 //______________________________________________________________________________
+
+//Prj 6 Revolute Robot Kinematics and Motion Planning
+
+//______________________________________________________________________________
   if(joystickGetDigital(1,8,JOY_RIGHT)) {
-    double l1 = 10.5;
+double l1 = 10.5;
 double l2 = 13.6;
 double x1 = l1+l2-1;
 double y1 = -2; //-1-1
@@ -159,7 +163,8 @@ motorSet(6,0);
 }
   }
 
-
+//End of Prj 6
+//______________________________________________________________________________
 
     while(joystickGetDigital(1,7, JOY_UP)) {
  error = (target - encoderGet(encoder));
