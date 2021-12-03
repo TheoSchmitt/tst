@@ -96,10 +96,10 @@ printf("The distance to target is %d \n", distanceToTarget);
 
 }
 
-//when distanceToTarget == -1
-//chassiSet (-1*50, 1*50);
-//delay (1500);
-//chassisSet (1*50, -1*50)
+if(distanceToTarget == -1 || distanceToTarget > 80 ); {
+chassisSet(-1*50, 1*50);
+}
+//End of Prj 7
 
 //______________________________________________________________________________
 
@@ -126,9 +126,9 @@ a2 *= -(180/M_PI);
 //printf("\na1: %f", a1);
 //printf("\na2: %f", a2);
 while(chk1 || chk2) {
-error = (int) round((0.6*encoderGet(shoulderEnc) - a1));
-error2 = (int) round((0.5*encoderGet(elbowEnc) - a2));
-lock = encoderGet(shoulderEnc);
+error = (int) round((0.6*encoderGet(encoder) - a1));
+error2 = (int) round((0.5*encoderGet(encoder2) - a2));
+lock = encoderGet(encoder);
 //printf("\n ch1: %d",chk1);
 //printf("   -    chk2: %d",chk2);
 if((error < 42) && (error > -42) && chk1) {
