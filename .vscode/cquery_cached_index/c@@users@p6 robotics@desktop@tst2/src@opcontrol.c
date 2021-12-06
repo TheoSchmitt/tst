@@ -83,8 +83,9 @@ while (joystickGetDigital(1, 7, JOY_DOWN)) {
 distanceToTarget = ultrasonicGet(frontSonar);
 printf("%d\n", distanceToTarget);
 
-
 printf("The distance to target is %d \n", distanceToTarget);
+if(distanceToTarget != -1 || distanceToTarget < 70)
+{
   errorU = (20 - distanceToTarget);
   powerU = kpU * errorU;
   if(abs(error) < maxOut){
@@ -96,8 +97,9 @@ printf("The distance to target is %d \n", distanceToTarget);
 
 }
 
-if(distanceToTarget == -1 || distanceToTarget > 80 ); {
+else  {
 chassisSet(-1*50, 1*50);
+}
 }
 //End of Prj 7
 
