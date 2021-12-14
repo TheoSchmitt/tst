@@ -93,11 +93,11 @@ while(joystickGetDigital(1,8,JOY_DOWN)) {
   chassisSet(-50,-50);
   } else {
      if(lineFM > lineFL && lineFM > lineFR){
-      chassisSet(50,50);
+      chassisSet(52,52);
      } else if(lineFL < lineFR) {
-         chassisSet(30,-35);
+         chassisSet(42,-30);
      } else if(lineFR < lineFL) {
-         chassisSet(-35,30);
+         chassisSet(-42,30);
      }
    }
 }
