@@ -40,7 +40,12 @@
        bool chk1;
        bool chk2;
        int distanceToTarget;
-
+       int lineFL;
+       int lineFM;
+       int lineFR;
+       analogCalibrate(1);
+       analogCalibrate(2);
+       analogCalibrate(3);
        // Multiple encoders can be declared
        Encoder encoder;
        Encoder encoder2;
@@ -74,6 +79,28 @@ encoderReset(encoder2);
 lock = 0;
 
 while(1){
+//______________________________________________________________________________
+
+//Prj 8 Line FOLLOWING
+
+//______________________________________________________________________________
+
+while(joystickGetDigital(1,8,JOY_DOWN)) {
+  lineFL = analogReadCalibrated(1);
+  lineFM = analogReadCalibrated(2);
+  lineFR = analogReadCalibrated(3);
+  if(lineFM < 500 && lineFR < 500 && lineFL < 500){
+  chassisSet(-50,-50);
+  } else {
+     if(lineFM > lineFL && lineFM > lineFR){
+      chassisSet(50,50);
+     } else if(lineFL < lineFR) {
+         chassisSet(30,-35);
+     } else if(lineFR < lineFL) {
+         chassisSet(-35,30);
+     }
+   }
+}
 
 //______________________________________________________________________________
 
